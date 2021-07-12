@@ -1,18 +1,21 @@
-import { useState } from 'react';
-import { List } from './List';
+import { useState } from "react";
+import { List } from "./List";
+import { Form } from "./Form";
 
 function App() {
-  const [description, setDescription] = useState('クリック前の表示です');
+  const [tab, setTab] = useState("list");
 
-  const changeDesctiption = () => {
-    setDescription('クリック後の表示です');
-  }
 
   return (
     <div>
-      {description}
-      <List title='取り扱い言語一覧' />
-      <button onClick={changeDesctiption}>ボタン</button>
+      <header>
+        <ul>
+          <li onClick={() => setTab("list")}>リスト</li>
+          <li onClick={() => setTab("form")}>フォーム</li>
+        </ul>
+      </header>
+      <hr />
+      {tab === "list" ? <List/> : <Form></Form>}
     </div>
   );
 }
